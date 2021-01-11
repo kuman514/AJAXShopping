@@ -9,6 +9,7 @@
 
         <link rel="stylesheet" href="css/item.css">
 
+        <script src="js/article.js"></script>
     </head>
     <body>
         <div id="top">
@@ -34,49 +35,14 @@
         <div id="content">
             <!-- 이 영역에 메뉴와 아이템 리스트가 들어갑니다. -->
             <div id="main">
-                <div class="itempreview" onclick="location.href='#*1'">
-                    <img src="previewimg/1.png">
-                    <div class="itemname">
-                        아이템 1
-                    </div>
-                    <div class="itemcost">
-                        1000원
-                    </div>
-                </div>
 
-                <div class="itempreview" onclick="location.href='#*2'">
-                    <img src="previewimg/2.png">
-                    <div class="itemname">
-                        아이템 2
-                    </div>
-                    <div class="itemcost">
-                        2500원
-                    </div>
-                </div>
-
-                <div class="itempreview" onclick="location.href='#*3'">
-                    <img src="previewimg/3.png">
-                    <div class="itemname">
-                        아이템 3
-                    </div>
-                    <div class="itemcost">
-                        4000원
-                    </div>
-                </div>
-
-                <div class="itempreview" onclick="location.href='#*4'">
-                    <img src="previewimg/4.png">
-                    <div class="itemname">
-                        아이템 4
-                    </div>
-                    <div class="itemcost">
-                        10000원
-                    </div>
-                </div>
             </div>
             <div id="showall">
                 아이템 전체 보기
             </div>
+            <script>
+                generateMainMenuList([1,2,3,4])
+            </script>
         </div>
     </body>
 </html>
