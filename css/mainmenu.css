@@ -1,0 +1,10 @@
+#main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#showall {
+    padding: 20px;
+    background-color: #00aaff;
+    color: white;
+}
