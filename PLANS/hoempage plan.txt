@@ -15,3 +15,4 @@ Fragment Identifier
 2-2-1. 아이템 프리뷰 - .itempreview
 2-3. 아이템 디테일 - #itemdetail
 2-4. 장바구니 - #cart
+2-5. 장바구니 나열 - #cartlist
