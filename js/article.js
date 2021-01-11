@@ -36,7 +36,15 @@ function pickUpMainMenuItems () {
   return [1, 2, 3, 4]
 }
 
+function generateContent (content) {
+  fetch('article/' + content + '.html').then(function (response) {
+    response.text().then(function (text) {
+      document.querySelector('#content').innerHTML = text
+    })
+  })
+}
+
 function generateMainMenu () {
-  document.querySelector('#content').innerHTML = "<div id=\"main\"></div>" + "<div id=\"showall\">아이템 전체 보기</div>"
+  generateContent('main')
   generateMainMenuList(pickUpMainMenuItems())
 }
