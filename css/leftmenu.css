@@ -1,0 +1,8 @@
+#leftmenucontent {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+}
+
+#leftmenu {
+    border-right: 1px gray solid;
+}

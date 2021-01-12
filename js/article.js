@@ -16,7 +16,7 @@ class itemPreviewInfo {
 
 function generateMenuList (items, target) {
   items.forEach(item => {
-    fetch('iteminfo/' + item + '.txt').then(function (response) {
+    fetch('iteminfo/' + item).then(function (response) {
       response.text().then(function (text) {
         let info = text.split(',')
         let append = new itemPreviewInfo(info[0], info[1], info[2]).convertToHTML()
@@ -33,7 +33,7 @@ function generateMainMenuList (items) {
 
 function pickUpMainMenuItems () {
   // Originally it's supposed to pick up random 4 items
-  return [1, 2, 3, 4]
+  return ['1.txt', '2.txt', '3.txt', '4.txt']
 }
 
 function generateContent (content) {
@@ -47,4 +47,8 @@ function generateContent (content) {
 function generateMainMenu () {
   generateContent('main')
   generateMainMenuList(pickUpMainMenuItems())
+}
+
+function generateLeftMenu () {
+  generateContent('leftmenu')
 }

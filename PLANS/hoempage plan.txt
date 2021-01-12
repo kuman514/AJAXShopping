@@ -10,7 +10,7 @@ Fragment Identifier
 1-4. 장바구니 - #cartbutton
 
 2. 콘텐츠 - #content
-2-1. 좌측 분류 - #typelist
+2-1. 좌측 분류 - #leftmenu
 2-2. 분류별 리스트 나열 - #itemlist
 2-2-1. 아이템 프리뷰 - .itempreview
 2-3. 아이템 디테일 - #itemdetail
