@@ -14,6 +14,7 @@ class itemPreviewInfo {
   }
 }
 
+// General ===========================================================================
 function generateContent (content) {
   fetch('article/' + content + '.html').then(function (response) {
     response.text().then(function (text) {
@@ -34,7 +35,9 @@ function generateItemList (items, target) {
     })
   })
 }
+// ===================================================================================
 
+// Main Menu =========================================================================
 function generateMainMenuList (items) {
   generateItemList(items, '#main')
 }
@@ -48,8 +51,17 @@ function generateMainMenu () {
   generateContent('main')
   generateMainMenuList(pickUpMainMenuItems())
 }
+// ===================================================================================
 
+// Item Select =======================================================================
 function generateItemSelect (items) {
   generateContent('leftmenu_itemselect')
   generateItemList(items, '#itemselect')
 }
+// ===================================================================================
+
+// Item Detail =======================================================================
+function generateItemDetail () {
+  generateContent('leftmenu_itemdetail')
+}
+// ===================================================================================
