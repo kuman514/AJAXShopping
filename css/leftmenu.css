@@ -5,4 +5,10 @@
 
 #leftmenu {
     border-right: 1px gray solid;
+    text-align: left;
+}
+
+#itemselect {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }

@@ -14,7 +14,15 @@ class itemPreviewInfo {
   }
 }
 
-function generateMenuList (items, target) {
+function generateContent (content) {
+  fetch('article/' + content + '.html').then(function (response) {
+    response.text().then(function (text) {
+      document.querySelector('#content').innerHTML = text
+    })
+  })
+}
+
+function generateItemList (items, target) {
   items.forEach(item => {
     fetch('iteminfo/' + item).then(function (response) {
       response.text().then(function (text) {
@@ -28,20 +36,12 @@ function generateMenuList (items, target) {
 }
 
 function generateMainMenuList (items) {
-  generateMenuList(items, '#main')
+  generateItemList(items, '#main')
 }
 
 function pickUpMainMenuItems () {
   // Originally it's supposed to pick up random 4 items
   return ['1.txt', '2.txt', '3.txt', '4.txt']
-}
-
-function generateContent (content) {
-  fetch('article/' + content + '.html').then(function (response) {
-    response.text().then(function (text) {
-      document.querySelector('#content').innerHTML = text
-    })
-  })
 }
 
 function generateMainMenu () {
@@ -51,4 +51,9 @@ function generateMainMenu () {
 
 function generateLeftMenu () {
   generateContent('leftmenu')
+}
+
+function generateItemSelect (items) {
+  generateLeftMenu()
+  generateItemList(items, '#itemselect')
 }
