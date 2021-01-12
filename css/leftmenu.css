@@ -3,6 +3,10 @@
     grid-template-columns: 160px 1fr;
 }
 
+#itemdetail {
+    padding: 20px;
+}
+
 #leftmenu {
     border-right: 1px gray solid;
     text-align: left;
@@ -15,5 +19,27 @@
 
 #summary {
     display: grid;
+    height: 200px;
     grid-template-columns: 250px 1fr;
+    text-align: left;
+}
+
+#briefinfo {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+#tocart {
+    text-align: center;
+    padding: 15px;
+    background-color: #00aaff;
+    color: white;
+}
+
+#tocart:hover {
+    cursor: pointer;
+}
+
+#detailimg {
+    padding: 20px;
 }
