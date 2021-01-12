@@ -49,11 +49,7 @@ function generateMainMenu () {
   generateMainMenuList(pickUpMainMenuItems())
 }
 
-function generateLeftMenu () {
-  generateContent('leftmenu')
-}
-
 function generateItemSelect (items) {
-  generateLeftMenu()
+  generateContent('leftmenu_itemselect')
   generateItemList(items, '#itemselect')
 }
