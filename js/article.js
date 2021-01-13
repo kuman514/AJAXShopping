@@ -48,8 +48,15 @@ function generateItemSelect (items) {
   const domparser = new DOMParser()
   if (document.getElementById('itemselect')) {
     // if #itemselect exists
+    // clear #itemselect first
+    // then load item preview
+    // if all items are loaded, merge
   } else if(document.getElementById('leftmenucontent')) {
     // if #leftmenucontent exists
+    // erase #itemdetail first
+    // then load #itemselect frame
+    // then load item preview
+    // if all items are loaded, merge
   } else {
     // load #leftmenucontent first
     fetch('article/leftmenu.html').then(function (response) {
@@ -87,14 +94,24 @@ function generateItemSelect (items) {
   }
 }
 
-function generateItemDetail () {
+function generateItemDetail (itemId) {
   const domparser = new DOMParser()
   if (document.getElementById('itemdetail')) {
     // if #itemdetail exists
+    // clear #itemdetail first
+    // then load item detail
+    // if item detail is loaded, merge
   } else if(document.getElementById('leftmenucontent')) {
     // if #leftmenucontent exists
+    // erase #itemselect first
+    // then load #itemdetail frame
+    // then load item detail
+    // if item detail is loaded, merge
   } else {
     // load #leftmenucontent first
+    // then load #itemdetail frame
+    // then load item detail
+    // if item detail is loaded, merge
   }
 }
 
