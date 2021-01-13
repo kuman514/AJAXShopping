@@ -1,5 +1,3 @@
-const domparser = new DOMParser()
-
 class itemPreviewInfo {
   constructor (id, name, cost) {
     this.id = id
@@ -17,6 +15,7 @@ class itemPreviewInfo {
 }
 
 function generateMainPage (items) {
+  const domparser = new DOMParser()
   fetch('article/main.html').then(function (response) {
     if (response.ok) {
       response.text().then(function (text) {
@@ -45,26 +44,60 @@ function generateMainPage (items) {
   })
 }
 
-function generateItemSelect () {
+function generateItemSelect (items) {
+  const domparser = new DOMParser()
   if (document.getElementById('itemselect')) {
     // if #itemselect exists
   } else if(document.getElementById('leftmenucontent')) {
     // if #leftmenucontent exists
   } else {
+    // load #leftmenucontent first
+    fetch('article/leftmenu.html').then(function (response) {
+      response.text().then(function (text) {
+        let page = domparser.parseFromString(text, 'text/html')
+        let target = page.getElementById('leftmenucontent')
 
+        // then load #itemselect frame
+        fetch('article/itemselect.html').then(function (response2) {
+          response2.text().then(function (text2) {
+            let page2 = domparser.parseFromString(text2, 'text/html')
+            let target2 = page2.getElementById('itemselect')
+            let count = 0
+
+            // then load item preview
+            for (let i = 0; i < items.length; i++) {
+              fetch('iteminfo/' + items[i] + '.txt').then(function (response3) {
+                response3.text().then(function (text3) {
+                  let t = text3.split(',')
+                  target2.innerHTML += new itemPreviewInfo(t[0], t[1], t[2]).toHTML()
+                  count++;
+
+                  // if all items are loaded, merge
+                  if (count >= items.length) {
+                    target.innerHTML += page2.querySelector('body').innerHTML
+                    document.getElementById('content').innerHTML = page.querySelector('body').innerHTML
+                  }
+                })
+              })
+            }
+          })
+        })
+      })
+    })
   }
 }
 
 function generateItemDetail () {
+  const domparser = new DOMParser()
   if (document.getElementById('itemdetail')) {
     // if #itemdetail exists
   } else if(document.getElementById('leftmenucontent')) {
     // if #leftmenucontent exists
   } else {
-
+    // load #leftmenucontent first
   }
 }
 
 function generateCart () {
-
+  const domparser = new DOMParser()
 }
