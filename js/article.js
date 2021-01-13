@@ -1,3 +1,5 @@
+const domparser = new DOMParser()
+
 class itemPreviewInfo {
   constructor (id, name, cost) {
     this.id = id
@@ -5,7 +7,7 @@ class itemPreviewInfo {
     this.cost = cost
   }
   // Convert to an HTML item
-  convertToHTML() {
+  toHTML() {
     return "<div class=\"itempreview\" onclick=\"location.href='#*" + this.id + "'\">"
           + "<img src=\"previewimg/" + this.id + ".png\">"
           + "<div class=\"itemname\">" + this.name + "</div>"
@@ -14,8 +16,28 @@ class itemPreviewInfo {
   }
 }
 
-function generateMainPage () {
+function generateMainPage (items) {
+  fetch('article/main.html').then(function (response) {
+    if (response.ok) {
+      response.text().then(function (text) {
+        let page = domparser.parseFromString(text, 'text/html')
+        let article = page.querySelector('body')
+        let target = page.getElementById('main')
+        let length = (items.length <= 4) ? items.length : 4
 
+        for (let i = 0; i < length; i++) {
+          fetch('iteminfo/' + items[i] + '.txt').then(function (response2) {
+            response2.text().then(function (text2) {
+              let t = text2.split(',')
+              target.innerHTML += new itemPreviewInfo(t[0], t[1], t[2]).toHTML()
+
+              document.getElementById('content').innerHTML = article.innerHTML
+            })
+          })
+        }
+      })
+    }
+  })
 }
 
 function generateItemSelect () {
@@ -27,5 +49,5 @@ function generateItemDetail () {
 }
 
 function generateCart () {
-  
+
 }
