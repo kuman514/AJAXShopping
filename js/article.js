@@ -13,3 +13,19 @@ class itemPreviewInfo {
           + "</div>"
   }
 }
+
+function generateMainPage () {
+
+}
+
+function generateItemSelect () {
+
+}
+
+function generateItemDetail () {
+
+}
+
+function generateCart () {
+  
+}
