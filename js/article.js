@@ -41,11 +41,23 @@ function generateMainPage (items) {
 }
 
 function generateItemSelect () {
+  if (document.getElementById('itemselect')) {
+    // if #itemselect exists
+  } else if(document.getElementById('leftmenucontent')) {
+    // if #leftmenucontent exists
+  } else {
 
+  }
 }
 
 function generateItemDetail () {
+  if (document.getElementById('itemdetail')) {
+    // if #itemdetail exists
+  } else if(document.getElementById('leftmenucontent')) {
+    // if #leftmenucontent exists
+  } else {
 
+  }
 }
 
 function generateCart () {
