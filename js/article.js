@@ -24,14 +24,19 @@ function generateMainPage (items) {
         let article = page.querySelector('body')
         let target = page.getElementById('main')
         let length = (items.length <= 4) ? items.length : 4
+        let count = 0
 
         for (let i = 0; i < length; i++) {
           fetch('iteminfo/' + items[i] + '.txt').then(function (response2) {
             response2.text().then(function (text2) {
               let t = text2.split(',')
               target.innerHTML += new itemPreviewInfo(t[0], t[1], t[2]).toHTML()
+              count++;
 
-              document.getElementById('content').innerHTML = article.innerHTML
+              if (count >= length) {
+                console.log(article)
+                document.getElementById('content').innerHTML = article.innerHTML
+              }
             })
           })
         }
