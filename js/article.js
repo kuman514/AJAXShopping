@@ -6,7 +6,8 @@ class itemPreviewInfo {
   }
   // Convert to an HTML item
   toHTML() {
-    return "<div class=\"itempreview\" onclick=\"location.href='#*" + this.id + "'\">"
+    return "<div class=\"itempreview\" onclick=\"location.href='#*" + this.id + "';"
+          + "generateItemDetail(" + this.id + ")\">"
           + "<img src=\"previewimg/" + this.id + ".png\">"
           + "<div class=\"itemname\">" + this.name + "</div>"
           + "<div class=\"itemcost\">" + this.cost + "원</div>"
