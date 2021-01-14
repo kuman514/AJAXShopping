@@ -122,22 +122,51 @@ function generateItemSelect (items) {
 
 function generateItemDetail (itemId) {
   const domparser = new DOMParser()
-  if (document.getElementById('itemdetail')) {
-    // if #itemdetail exists
-    // clear #itemdetail first
-    // then load item detail
-    // if item detail is loaded, merge
-  } else if(document.getElementById('leftmenucontent')) {
+  if (document.getElementById('leftmenucontent')) {
     // if #leftmenucontent exists
-    // erase #itemselect first
+    console.log('#leftmenucontent already exists')
+
+    // erase #itemdetail or #itemselect first
+    if (document.getElementById('itemdetail')) {
+      document.getElementById('itemdetail').remove()
+      console.log('#itemdetail removed')
+    } else if (document.getElementById('itemselect')) {
+      document.getElementById('itemselect').remove()
+      console.log('#itemselect removed')
+    }
+
     // then load #itemdetail frame
     // then load item detail
     // if item detail is loaded, merge
   } else {
     // load #leftmenucontent first
-    // then load #itemdetail frame
-    // then load item detail
-    // if item detail is loaded, merge
+    fetch('article/leftmenu.html').then(function (response) {
+      response.text().then(function (text) {
+        let page = domparser.parseFromString(text, 'text/html')
+        let target = page.getElementById('leftmenucontent')
+
+        // then load #itemdetail frame
+        fetch('article/itemdetail.html').then(function (response2) {
+          response2.text().then(function (text2) {
+            let page2 = domparser.parseFromString(text2, 'text/html')
+            let target2 = page2.getElementById('itemdetail')
+
+            // TODO: modify this code below
+            // then load item detail
+            fetch('iteminfo/' + itemId + '.txt').then(function (response3) {
+              response3.text().then(function (text3) {
+                let t = text3.split(',')
+
+                // if item detail is loaded, merge
+                target.innerHTML += page2.querySelector('body').innerHTML
+                document.getElementById('content').innerHTML = page.querySelector('body').innerHTML
+              })
+            })
+            // end of TODO ====================
+          })
+        })
+      })
+    })
   }
 }
 
