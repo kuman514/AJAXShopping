@@ -36,12 +36,24 @@
         <div id="content">
             <!-- 이 영역에 메뉴와 아이템 리스트가 들어갑니다. -->
             <script>
-                if (location.hash) {
-                    // Hash
-                } else {
-                    // No Hash
+                switch (location.hash[1]) {
+                  case '!':
+                    if (location.hash.slice(2) === 'cart') {
+                      //generateCart()
+                    } else {
+                      generateMainPage(randomPick(4))
+                    }
+                    break
+                  case '~':
+                    generateItemSelect(currentItems[location.hash.slice(2)])
+                    break
+                  case '*':
+                    generateItemDetail(location.hash.slice(2))
+                    break
+                  default:
+                    generateMainPage(randomPick(4))
+                    break
                 }
-                generateMainPage([1,2,3,4])
             </script>
         </div>
     </body>
