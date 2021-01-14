@@ -46,17 +46,43 @@ function generateMainPage (items) {
 
 function generateItemSelect (items) {
   const domparser = new DOMParser()
-  if (document.getElementById('itemselect')) {
-    // if #itemselect exists
-    // clear #itemselect first
-    // then load item preview
-    // if all items are loaded, merge
-  } else if(document.getElementById('leftmenucontent')) {
+  if (document.getElementById('leftmenucontent')) {
     // if #leftmenucontent exists
-    // erase #itemdetail first
+    console.log('#leftmenucontent already exists')
+
+    // erase #itemdetail or #itemselect first
+    if (document.getElementById('itemdetail')) {
+      document.getElementById('itemdetail').remove()
+      console.log('#itemdetail removed')
+    } else if (document.getElementById('itemselect')) {
+      document.getElementById('itemselect').remove()
+      console.log('#itemselect removed')
+    }
+
     // then load #itemselect frame
-    // then load item preview
-    // if all items are loaded, merge
+    fetch('article/itemselect.html').then(function (response2) {
+      response2.text().then(function (text2) {
+        let page2 = domparser.parseFromString(text2, 'text/html')
+        let target2 = page2.getElementById('itemselect')
+        let count = 0
+
+        // then load item preview
+        for (let i = 0; i < items.length; i++) {
+          fetch('iteminfo/' + items[i] + '.txt').then(function (response3) {
+            response3.text().then(function (text3) {
+              let t = text3.split(',')
+              target2.innerHTML += new itemPreviewInfo(t[0], t[1], t[2]).toHTML()
+              count++;
+
+              // if all items are loaded, merge
+              if (count >= items.length) {
+                document.getElementById('leftmenucontent').innerHTML += page2.querySelector('body').innerHTML
+              }
+            })
+          })
+        }
+      })
+    })
   } else {
     // load #leftmenucontent first
     fetch('article/leftmenu.html').then(function (response) {
