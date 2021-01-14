@@ -33,7 +33,7 @@ function generateMainPage (items) {
               count++;
 
               if (count >= length) {
-                console.log(article)
+                //console.log(article)
                 document.getElementById('content').innerHTML = article.innerHTML
               }
             })
@@ -105,7 +105,7 @@ function generateItemSelect (items) {
                   target2.innerHTML += new itemPreviewInfo(t[0], t[1], t[2]).toHTML()
                   count++;
 
-                  // if all items are loaded, merge
+                  // if all items are fully loaded, merge
                   if (count >= items.length) {
                     target.innerHTML += page2.querySelector('body').innerHTML
                     document.getElementById('content').innerHTML = page.querySelector('body').innerHTML
@@ -136,8 +136,28 @@ function generateItemDetail (itemId) {
     }
 
     // then load #itemdetail frame
-    // then load item detail
-    // if item detail is loaded, merge
+    fetch('article/itemdetail.html').then(function (response2) {
+      response2.text().then(function (text2) {
+        let page2 = domparser.parseFromString(text2, 'text/html')
+
+        // then load item detail
+        fetch('iteminfo/' + itemId + '.txt').then(function (response3) {
+          response3.text().then(function (text3) {
+            let t = text3.split(',')
+
+            page2.getElementById('preview').innerHTML = "<img src=\"previewimg/" + itemId + ".png\">"
+            //console.log(t)
+            page2.getElementById('type').innerHTML = "종류: " + t[3]
+            page2.getElementById('name').innerHTML = "상품명: " + t[1]
+            page2.getElementById('cost').innerHTML = "가격: " + t[2] + "원"
+            page2.getElementById('itemdetail').innerHTML += "<img id=\"detailimg\" src=\"detailimg/" + itemId + ".png\">"
+
+            // if item detail is fully loaded, merge
+            document.getElementById('leftmenucontent').innerHTML += page2.querySelector('body').innerHTML
+          })
+        })
+      })
+    })
   } else {
     // load #leftmenucontent first
     fetch('article/leftmenu.html').then(function (response) {
@@ -149,20 +169,24 @@ function generateItemDetail (itemId) {
         fetch('article/itemdetail.html').then(function (response2) {
           response2.text().then(function (text2) {
             let page2 = domparser.parseFromString(text2, 'text/html')
-            let target2 = page2.getElementById('itemdetail')
 
-            // TODO: modify this code below
             // then load item detail
             fetch('iteminfo/' + itemId + '.txt').then(function (response3) {
               response3.text().then(function (text3) {
                 let t = text3.split(',')
 
-                // if item detail is loaded, merge
+                page2.getElementById('preview').innerHTML = "<img src=\"previewimg/" + itemId + ".png\">"
+                //console.log(t)
+                page2.getElementById('type').innerHTML = "종류: " + t[3]
+                page2.getElementById('name').innerHTML = "상품명: " + t[1]
+                page2.getElementById('cost').innerHTML = "가격: " + t[2] + "원"
+                page2.getElementById('itemdetail').innerHTML += "<img id=\"detailimg\" src=\"detailimg/" + itemId + ".png\">"
+
+                // if item detail is fully loaded, merge
                 target.innerHTML += page2.querySelector('body').innerHTML
                 document.getElementById('content').innerHTML = page.querySelector('body').innerHTML
               })
             })
-            // end of TODO ====================
           })
         })
       })
