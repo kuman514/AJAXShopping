@@ -21,6 +21,9 @@ class itemPreviewInfo {
           + "<div>" + this.name + "<br>" + this.cost + "</div>"
           + "</div>"
   }
+  get fee() {
+    return this.cost
+  }
 }
 
 function generateMainPage (items) {
@@ -208,17 +211,22 @@ function generateCart () {
     response.text().then(function (text) {
       let page = domparser.parseFromString(text, 'text/html')
       let count = 0
+      let total = 0
 
       // modify this code below
-      for (let i = 0; i < length; i++) {
-        fetch('iteminfo/' + items[i] + '.txt').then(function (response2) {
+      for (let i = 0; i < inCart.length; i++) {
+        fetch('iteminfo/' + inCart[i] + '.txt').then(function (response2) {
           response2.text().then(function (text2) {
             let t = text2.split(',')
-            page.getElementById('incartlist').innerHTML += new itemPreviewInfo(t[0], t[1], t[2]).toCartHTML()
-            count++;
+            let item = new itemPreviewInfo(t[0], t[1], t[2])
 
-            if (count >= length) {
-              document.getElementById('content').innerHTML = article.innerHTML
+            page.getElementById('incartlist').innerHTML += item.toCartHTML()
+            count++;
+            total += item.fee
+
+            if (count >= inCart.length) {
+              page.getElementById('totalcost').innerHTML = "총합: " + total + "원"
+              document.getElementById('content').innerHTML = page.querySelector('body').innerHTML
             }
           })
         })

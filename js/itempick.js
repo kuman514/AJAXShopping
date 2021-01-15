@@ -5,7 +5,7 @@ var currentItems = {
   'computer': [9, 10, 11, 12, 13]
 }
 
-var inCart = []
+var inCart = [1,2,3,4,5]
 
 function putIntoCart (itemId) {
   inCart.push(itemId)
