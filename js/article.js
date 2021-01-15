@@ -34,7 +34,6 @@ function generateMainPage (items) {
               count++;
 
               if (count >= length) {
-                //console.log(article)
                 document.getElementById('content').innerHTML = article.innerHTML
               }
             })
@@ -147,7 +146,6 @@ function generateItemDetail (itemId) {
             let t = text3.split(',')
 
             page2.getElementById('preview').innerHTML = "<img src=\"previewimg/" + itemId + ".png\">"
-            //console.log(t)
             page2.getElementById('type').innerHTML = "종류: " + t[3]
             page2.getElementById('name').innerHTML = "상품명: " + t[1]
             page2.getElementById('cost').innerHTML = "가격: " + t[2] + "원"
@@ -197,4 +195,11 @@ function generateItemDetail (itemId) {
 
 function generateCart () {
   const domparser = new DOMParser()
+  fetch('article/cartcontent.html').then(function (response) {
+    response.text().then(function (text) {
+      let page = domparser.parseFromString(text, 'text/html')
+
+      // TODO: continue here
+    })
+  })
 }
