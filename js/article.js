@@ -13,6 +13,21 @@ class itemPreviewInfo {
           + "<div class=\"itemcost\">" + this.cost + "원</div>"
           + "</div>"
   }
+  // convert to a cart HTML item
+  toCartHTML() {
+    /*
+    <div class="cartitem" onclick="location.href='#*넘버'; generateItemDetail(넘버)">
+            <div>
+                <img src="itempreview/넘버.png">
+            </div>
+            <div>
+                품명<br>
+                가격
+            </div>
+        </div>
+    */
+    // continue here
+  }
 }
 
 function generateMainPage (items) {
