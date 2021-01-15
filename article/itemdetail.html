@@ -4,6 +4,9 @@
             <!--img src="previewimg/1.png"-->
         </div>
         <div id="briefinfo">
+            <div id="itemId">
+                상품번호
+            </div>
             <div id="type">
                 타입
             </div>
@@ -13,7 +16,7 @@
             <div id="cost">
                 가격
             </div>
-            <div id="tocart" onclick="">
+            <div id="tocart" onclick="putIntoCart(document.getElementById('itemId').innerHTML.split(': ')[1])">
                 장바구니에 담기
             </div>
         </div>

@@ -146,6 +146,7 @@ function generateItemDetail (itemId) {
             let t = text3.split(',')
 
             page2.getElementById('preview').innerHTML = "<img src=\"previewimg/" + itemId + ".png\">"
+            page2.getElementById('itemId').innerHTML = "상품번호: " + t[0]
             page2.getElementById('type').innerHTML = "종류: " + t[3]
             page2.getElementById('name').innerHTML = "상품명: " + t[1]
             page2.getElementById('cost').innerHTML = "가격: " + t[2] + "원"
@@ -175,7 +176,7 @@ function generateItemDetail (itemId) {
                 let t = text3.split(',')
 
                 page2.getElementById('preview').innerHTML = "<img src=\"previewimg/" + itemId + ".png\">"
-                //console.log(t)
+                page2.getElementById('itemId').innerHTML = "상품번호: " + t[0]
                 page2.getElementById('type').innerHTML = "종류: " + t[3]
                 page2.getElementById('name').innerHTML = "상품명: " + t[1]
                 page2.getElementById('cost').innerHTML = "가격: " + t[2] + "원"

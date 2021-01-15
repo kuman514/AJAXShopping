@@ -19,14 +19,14 @@
 
 #summary {
     display: grid;
-    height: 200px;
+    height: 250px;
     grid-template-columns: 250px 1fr;
     text-align: left;
 }
 
 #briefinfo {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
 
 #tocart {

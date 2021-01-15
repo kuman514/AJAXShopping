@@ -9,6 +9,8 @@ var inCart = []
 
 function putIntoCart (itemId) {
   inCart.push(itemId)
+  alert('장바구니에 담았습니다')
+  //generateCart()
 }
 
 function randomPick (amount) {
