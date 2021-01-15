@@ -18,3 +18,7 @@
     display: grid;
     grid-template-columns: 100px 1fr;
 }
+
+.cartitem:hover {
+    cursor: pointer;
+}

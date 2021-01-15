@@ -5,12 +5,13 @@ var currentItems = {
   'computer': [9, 10, 11, 12, 13]
 }
 
-var inCart = [1,2,3,4,5]
+var inCart = []
 
 function putIntoCart (itemId) {
   inCart.push(itemId)
   alert('장바구니에 담았습니다')
-  //generateCart()
+  generateCart()
+  location.href = '#!cart'
 }
 
 function randomPick (amount) {
@@ -20,4 +21,12 @@ function randomPick (amount) {
     array[i] = currentItems['all'][array[i] % currentItems['all'].length]
   }
   return array
+}
+
+function purchase () {
+  let totalCost = document.getElementById('totalcost').innerHTML
+  inCart = []
+  alert(totalCost + "\n구매 완료되었습니다!\n감사합니다.")
+  generateCart()
+  location.href = '#!cart'
 }

@@ -18,11 +18,11 @@ class itemPreviewInfo {
     return "<div class=\"cartitem\" onclick=\"location.href='#*" + this.id + "';"
           + "generateItemDetail(" + this.id + ")\">"
           + "<div><img src=\"previewimg/" + this.id + ".png\"></div>"
-          + "<div>" + this.name + "<br>" + this.cost + "</div>"
+          + "<div>" + this.name + "<br>" + this.cost + "원</div>"
           + "</div>"
   }
   get fee() {
-    return this.cost
+    return Number(this.cost)
   }
 }
 
@@ -213,7 +213,11 @@ function generateCart () {
       let count = 0
       let total = 0
 
-      // modify this code below
+      if (inCart.length === 0) {
+        page.getElementById('totalcost').innerHTML = "총합: " + total + "원"
+        document.getElementById('content').innerHTML = page.querySelector('body').innerHTML
+      }
+
       for (let i = 0; i < inCart.length; i++) {
         fetch('iteminfo/' + inCart[i] + '.txt').then(function (response2) {
           response2.text().then(function (text2) {

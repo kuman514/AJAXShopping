@@ -1,0 +1,15 @@
+#totalcost {
+    text-align: center;
+    padding: 15px;
+}
+
+#purchasebutton {
+    text-align: center;
+    padding: 15px;
+    background-color: #00aaff;
+    color: white;
+}
+
+#purchasebutton:hover {
+    cursor: pointer;
+}
