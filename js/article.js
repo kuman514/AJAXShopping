@@ -15,18 +15,11 @@ class itemPreviewInfo {
   }
   // convert to a cart HTML item
   toCartHTML() {
-    /*
-    <div class="cartitem" onclick="location.href='#*넘버'; generateItemDetail(넘버)">
-            <div>
-                <img src="itempreview/넘버.png">
-            </div>
-            <div>
-                품명<br>
-                가격
-            </div>
-        </div>
-    */
-    // continue here
+    return "<div class=\"cartitem\" onclick=\"location.href='#*" + this.id + "';"
+          + "generateItemDetail(" + this.id + ")\">"
+          + "<div><img src=\"previewimg/" + this.id + ".png\"></div>"
+          + "<div>" + this.name + "<br>" + this.cost + "</div>"
+          + "</div>"
   }
 }
 
@@ -214,8 +207,22 @@ function generateCart () {
   fetch('article/cartcontent.html').then(function (response) {
     response.text().then(function (text) {
       let page = domparser.parseFromString(text, 'text/html')
+      let count = 0
 
-      // TODO: continue here
+      // modify this code below
+      for (let i = 0; i < length; i++) {
+        fetch('iteminfo/' + items[i] + '.txt').then(function (response2) {
+          response2.text().then(function (text2) {
+            let t = text2.split(',')
+            page.getElementById('incartlist').innerHTML += new itemPreviewInfo(t[0], t[1], t[2]).toCartHTML()
+            count++;
+
+            if (count >= length) {
+              document.getElementById('content').innerHTML = article.innerHTML
+            }
+          })
+        })
+      }
     })
   })
 }
